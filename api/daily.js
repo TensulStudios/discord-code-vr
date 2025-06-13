@@ -8,7 +8,7 @@ export default function handler(req, res) {
   const { token = '', length = 8 } = req.query;
 
   if (!token) {
-    return res.status(400).json({ error: 'Missing token' });
+    return res.status(400).json({ error: 'Missing \'token\' parameter in GET request url.' });
   }
 
   const now = new Date();
