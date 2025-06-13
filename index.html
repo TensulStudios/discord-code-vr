@@ -375,7 +375,7 @@
 
     <section class="card">
       <h2>Available Endpoints</h2>
-      <h3>GET <code>/api/daily?token=&lt;token&gt;&length=&lt;length&gt;</code></h3>
+      <h3>GET tapkey.vercel.app/api/daily?token=&lt;token&gt;&length=&lt;length&gt;</code></h3>
       <p>Generates a new code each day that changes daily based on your token.</p>
       <ul>
         <li><strong>token</strong>: Required. The word that changes the code.</li>
@@ -391,11 +391,11 @@
 
     <section class="card">
       <h2>Example Usage</h2>
-      <p>Get today's daily code for token "gaming" with length 12:</p>
-      <pre>GET https://yourdomain.com/api/daily?token=gaming&length=12</pre>
+      <p>Get today's daily code for token with length 12:</p>
+      <pre>GET tapkey.vercel.app/api/daily?token=example&length=12</pre>
       <p>Response:</p>
       <pre>{
-  "token": "gaming",
+  "token": "example",
   "code": "AB12CD34EF56"
 }</pre>
     </section>
