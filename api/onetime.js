@@ -5,7 +5,7 @@ export default function handler(req, res) {
     return res.status(405).json({ error: 'Only GET allowed for \'/api/onetime.js\'.' });
   }
 
-  const { token = '', length = 8 } = req.query;
+  const { length = 8 } = req.query;
 
   if (!token) {
     return res.status(400).json({ error: 'Missing token' });
@@ -14,8 +14,11 @@ export default function handler(req, res) {
   const year = now.getUTCFullYear();
   const month = now.getUTCMonth() + 1;
   const day = now.getUTCDate();
+  const hours = now.getUTCHours()
+  const minutes = now.getUTCMinutes()
+  const seconds = now.getUTCSeconds()
 
-  const seed = `${year}-${month}-${day}-${token}-${new Date(8.64e15).toString()}`;
+  const seed = `${year}-${month}-${day}-${hours}-${minutes}-${seconds}`;
   const hash = crypto.createHash('sha256').update(seed).digest('hex');
   const code = hash.slice(0, Math.min(64, parseInt(length))).toUpperCase();
 
