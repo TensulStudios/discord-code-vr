@@ -2,7 +2,7 @@ import crypto from 'crypto';
 
 export default function handler(req, res) {
   if (req.method !== 'GET') {
-    return res.status(405).json({ error: 'Method Not Allowed' });
+    return res.status(405).json({ error: 'Only GET allowed for \'/api/daily.js\'.' });
   }
 
   const { token = '', length = 8 } = req.query;
