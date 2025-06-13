@@ -390,15 +390,12 @@
     </section>
 
     <section class="card">
-      <h2>Example Usage</h2>
-      <p>Get today's daily code for token with length 12:</p>
-      <pre>GET tapkey.vercel.app/api/daily?token=example&length=12</pre>
-      <p>Response:</p>
-      <pre>{
-  "token": "example",
-  "code": "AB12CD34EF56"
-}</pre>
-    </section>
+  <h2>Example Usage</h2>
+  <p>Get today's daily code for token with length 12:</p>
+  <pre id="request">GET tapkey.vercel.app/api/daily?token=example&length=12</pre>
+  <p>Response:</p>
+  <pre id="response">Loading...</pre>
+</section>
   </main>
 
   <footer>
@@ -430,6 +427,16 @@
       threshold: 0.1,
       rootMargin: '0px 0px -50px 0px'
     };
+
+const responseEl = document.getElementById('response');
+    try {
+      const res = await fetch('https://tapkey.vercel.app/api/daily?token=example&length=12');
+      if (!res.ok) throw new Error('Network response was not ok');
+      const data = await res.json();
+      responseEl.textContent = JSON.stringify(data, null, 2);
+    } catch (e) {
+      responseEl.textContent = 'Error fetching API: ' + e.message;
+    }
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
