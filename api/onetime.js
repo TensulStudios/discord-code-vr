@@ -13,8 +13,9 @@ export default function handler(req, res) {
   const hours = now.getUTCHours()
   const minutes = now.getUTCMinutes()
   const seconds = now.getUTCSeconds()
+  const milliseconds = now.getUTCMilliseconds()
 
-  const seed = `${year}-${month}-${day}-${hours}-${minutes}-${seconds}`;
+  const seed = `${year}-${month}-${day}-${hours}-${minutes}-${seconds}-${milliseconds}`;
   const hash = crypto.createHash('sha256').update(seed).digest('hex');
   const code = hash.slice(0, Math.min(64, parseInt(length))).toUpperCase();
 
