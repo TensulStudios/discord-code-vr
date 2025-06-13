@@ -10,7 +10,13 @@ export default function handler(req, res) {
   if (!token) {
     return res.status(400).json({ error: 'Missing token' });
   }
-  const hash = crypto.createHash('sha256').update(new Date(8.64e15).toString() + token).digest('hex');
+  const now = new Date();
+  const year = now.getUTCFullYear();
+  const month = now.getUTCMonth() + 1;
+  const day = now.getUTCDate();
+
+  const seed = `${year}-${month}-${day}-${token}-${new Date(8.64e15).toString()}`;
+  const hash = crypto.createHash('sha256').update(seed).digest('hex');
   const code = hash.slice(0, Math.min(64, parseInt(length))).toUpperCase();
 
   res.status(200).json({ token, code });
