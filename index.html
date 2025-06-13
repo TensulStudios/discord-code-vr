@@ -45,7 +45,6 @@
     color: var(--text-primary-dark);
   }
 
-  /* Background Animation */
   body::before {
     content: '';
     position: fixed;
@@ -73,8 +72,7 @@
     33% { transform: translateY(-20px) rotate(1deg); }
     66% { transform: translateY(10px) rotate(-1deg); }
   }
-
-  /* Theme Toggle */
+  
   .theme-toggle {
     position: fixed;
     top: 20px;
@@ -94,8 +92,8 @@
     transform: scale(1.1);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
   }
+  
 
-  /* Header */
   header {
     background: var(--primary-gradient);
     padding: 4rem 2rem;
@@ -151,7 +149,6 @@
     margin: 0 auto;
   }
 
-  /* Main Content */
   main {
     max-width: 1000px;
     margin: 0 auto;
@@ -226,8 +223,7 @@
   body.dark p {
     color: var(--text-secondary-dark);
   }
-
-  /* Code Styling */
+  
   code {
     background: var(--accent-gradient);
     color: white;
@@ -263,8 +259,7 @@
     border-radius: 50%;
     box-shadow: 20px 0 #ffbd2e, 40px 0 #27ca3f;
   }
-
-  /* Lists */
+  
   ul {
     list-style: none;
     padding-left: 0;
@@ -297,7 +292,6 @@
     color: var(--text-primary-dark);
   }
 
-  /* Links */
   a {
     color: #667eea;
     text-decoration: none;
@@ -320,7 +314,6 @@
     width: 100%;
   }
 
-  /* Footer */
   footer {
     text-align: center;
     padding: 3rem 2rem;
@@ -336,7 +329,6 @@
     color: var(--text-secondary-dark);
   }
 
-  /* Responsive Design */
   @media (max-width: 768px) {
     header {
       padding: 3rem 1rem;
@@ -366,6 +358,8 @@
 </style>
 </head>
 <body>
+  <div class="theme-toggle" onclick="toggleTheme()">🌙</div>
+  
   <header>
     <div class="header-content">
       <h1>tapkey</h1>
@@ -417,7 +411,26 @@
   </footer>
 
   <script>
-    // Add scroll animations
+    function toggleTheme() {
+      const body = document.body;
+      const toggle = document.querySelector('.theme-toggle');
+      
+      body.classList.toggle('dark');
+      toggle.textContent = body.classList.contains('dark') ? '☀️' : '🌙';
+      
+      localStorage.setItem('theme', body.classList.contains('dark') ? 'dark' : 'light');
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      const savedTheme = localStorage.getItem('theme');
+      const toggle = document.querySelector('.theme-toggle');
+      
+      if (savedTheme === 'dark') {
+        document.body.classList.add('dark');
+        toggle.textContent = '☀️';
+      }
+    });
+	
     const observerOptions = {
       threshold: 0.1,
       rootMargin: '0px 0px -50px 0px'
