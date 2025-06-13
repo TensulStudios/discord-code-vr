@@ -18,5 +18,5 @@ export default function handler(req, res) {
   const hash = crypto.createHash('sha256').update(seed).digest('hex');
   const code = hash.slice(0, Math.min(64, parseInt(length))).toUpperCase();
 
-  res.status(200).json({ token, code });
+  res.status(200).json({ code });
 }
