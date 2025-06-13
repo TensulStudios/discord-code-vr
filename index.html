@@ -247,18 +247,6 @@
     line-height: 1.5;
     position: relative;
   }
-
-  pre::before {
-    content: '';
-    position: absolute;
-    top: 10px;
-    left: 15px;
-    width: 12px;
-    height: 12px;
-    background: #ff5f56;
-    border-radius: 50%;
-    box-shadow: 20px 0 #ffbd2e, 40px 0 #27ca3f;
-  }
   
   ul {
     list-style: none;
@@ -425,8 +413,6 @@
       
       body.classList.toggle('dark');
       toggle.textContent = body.classList.contains('dark') ? '☀️' : '🌙';
-      
-      localStorage.setItem('theme', body.classList.contains('dark') ? 'dark' : 'light');
     }
 
     document.addEventListener('DOMContentLoaded', function() {
