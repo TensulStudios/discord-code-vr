@@ -6,10 +6,6 @@ export default function handler(req, res) {
   }
 
   const { length = 8 } = req.query;
-
-  if (!token) {
-    return res.status(400).json({ error: 'Missing token' });
-  }
   const now = new Date();
   const year = now.getUTCFullYear();
   const month = now.getUTCMonth() + 1;
