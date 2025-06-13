@@ -5,14 +5,20 @@ export default function handler(req, res) {
     return res.status(405).json({ error: 'Method Not Allowed' });
   }
 
+  const { token = '', length = 8 } = req.query;
+
+  if (!token) {
+    return res.status(400).json({ error: 'Missing token' });
+  }
+
   const now = new Date();
   const year = now.getUTCFullYear();
   const month = now.getUTCMonth() + 1;
   const day = now.getUTCDate();
-  const seed = `${year}-${month}-${day}`;
 
+  const seed = `${year}-${month}-${day}-${token}`;
   const hash = crypto.createHash('sha256').update(seed).digest('hex');
-  const dailyCode = hash.slice(0, 8).toUpperCase();
+  const code = hash.slice(0, Math.min(64, parseInt(length))).toUpperCase();
 
-  res.status(200).json({ code: dailyCode });
+  res.status(200).json({ token, code });
 }
