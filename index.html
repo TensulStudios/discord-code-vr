@@ -345,7 +345,7 @@
   }
 </style>
 </head>
-<body>
+<body class="dark">
   <div class="theme-toggle" onclick="toggleTheme()">🌙</div>
   
   <header>
@@ -408,21 +408,12 @@
 
   <script>
     function toggleTheme() {
-      const body = document.body;
-      const toggle = document.querySelector('.theme-toggle');
-      
-      body.classList.toggle('dark');
-      toggle.textContent = body.classList.contains('dark') ? '☀️' : '🌙';
+	    
     }
 
     document.addEventListener('DOMContentLoaded', function() {
       const savedTheme = localStorage.getItem('theme');
       const toggle = document.querySelector('.theme-toggle');
-      
-      if (savedTheme === 'dark') {
-        document.body.classList.add('dark');
-        toggle.textContent = '☀️';
-      }
     });
 	
     const observerOptions = {
